@@ -4,6 +4,7 @@ const { url } = require('./creds');
 
 // Import tests
 const { testLogin } = require('./tests/testLogin');
+const { testUploadImage } = require('./tests/testUploadImage');
 
 
 (async () => {
@@ -16,7 +17,9 @@ const { testLogin } = require('./tests/testLogin');
 
   try {
     // Paste test here
+    page.on('error', (errorMessage) => { throw Error(errorMessage) });
     await testLogin(page);
+    await testUploadImage(page);
   } catch (err) {
     console.error('-----');
     console.error(err);

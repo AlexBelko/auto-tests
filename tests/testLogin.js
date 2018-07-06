@@ -20,10 +20,12 @@ async function testLogin(page) {
 
     await page.click(LOGIN_BUTTON_SELECTOR);
 
-    if (await page.waitForSelector(ERROR_TOAST_SELECTOR, { timeout: 3000 })) {
+    try {
+      await page.waitForSelector(ERROR_TOAST_SELECTOR, { timeout: 3000 });
       throw Error('Error in login');
+    } catch (error) {
+      
     }
-
     await page.waitForSelector(FILTER_SELECTOR);
   }
 
