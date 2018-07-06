@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const { getInnerHtmlText } = require('./utils');
+const { url } = require('./creds');
 
 // Import tests
 const { testLogin } = require('./tests/testLogin');
@@ -11,9 +12,10 @@ const { testLogin } = require('./tests/testLogin');
     headless: false
   });
   const page = await browser.newPage();
-  await page.goto('http://localhost:9000/');
+  await page.goto(url);
 
   try {
+    // Paste test here
     await testLogin(page);
   } catch (err) {
     console.error('-----');
@@ -21,7 +23,6 @@ const { testLogin } = require('./tests/testLogin');
     console.error('-----');
     await page.screenshot({ path: 'error.png' })
   }
-  // await page.screenshot({ path: 'example.png' });
 
   await browser.close();
 })();

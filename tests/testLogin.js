@@ -8,6 +8,7 @@ async function testLogin(page) {
       'body > div.grid > form > div.vm-form-signin-body > div > ct-row > ct-col:nth-child(1) > button';
     const FILTER_SELECTOR =
       'body > div.lt-f-col.main-app-wrapper.au-target > div > div.ct-toolbar > div > ct-toolbar-toggler > button';
+    const ERROR_TOAST_SELECTOR = '#toast-container';
 
     await page.waitForSelector(USERNAME_SELECTOR);
 
@@ -19,7 +20,10 @@ async function testLogin(page) {
 
     await page.click(LOGIN_BUTTON_SELECTOR);
 
-    // throw Error('aaa');
+    if (await page.waitForSelector(ERROR_TOAST_SELECTOR, { timeout: 3000 })) {
+      throw Error('Error in login');
+    }
+
     await page.waitForSelector(FILTER_SELECTOR);
   }
 
