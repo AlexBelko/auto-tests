@@ -4,7 +4,8 @@ const { url } = require('./creds');
 
 // Import tests
 const { testLogin } = require('./tests/testLogin');
-const { testUploadImage } = require('./tests/testUploadImage');
+// const { testUploadImage } = require('./tests/testUploadImage');
+const { testNewCampaign } = require('./tests/testNewCampaign');
 
 
 (async () => {
@@ -19,7 +20,8 @@ const { testUploadImage } = require('./tests/testUploadImage');
     // Paste test here
     page.on('error', (errorMessage) => { throw Error(errorMessage) });
     await testLogin(page);
-    await testUploadImage(page);
+    await testNewCampaign(page);
+    // await testUploadImage(page);
   } catch (err) {
     console.error('-----');
     console.error(err);
