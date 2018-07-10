@@ -11,9 +11,11 @@ const { testNewCampaign } = require('./tests/testNewCampaign');
 (async () => {
   const browser = await puppeteer.launch({
     args: ['--no-sandbox'],
-    headless: false
+    headless: false,
+    slowMo: '50'
   });
   const page = await browser.newPage();
+  await page.setViewport({width: 1280, height: 720});
   await page.goto(url);
 
   try {

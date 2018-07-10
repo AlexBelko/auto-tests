@@ -30,7 +30,23 @@ async function waitForResponseOk(page, url) {
   })
 }
 
+async function waitForCheckBoxStatus(page, selector, status = true) {
+  if (selector.slice(-5) !== 'input') {
+    throw Error('checkBoxStatus(): Selector must be ended with "input"')
+  }
+  const fullSelector = `${selector}${status ? ':checked' : ':not(:checked)'}`;
+
+  return page.waitForSelector(fullSelector);
+}
+
+async function getFromInside(page, selector) {
+  await page.waitForSelector(selector);
+  return await page.evaluate(el => el.innerHTML.replace('<!--anchor-->', ''), await page.$(selector));
+}
+
 module.exports = {
     getInnerHtmlText,
-    waitForResponseOk
+    waitForResponseOk,
+    waitForCheckBoxStatus,
+    getFromInside
 };
