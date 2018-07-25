@@ -25,7 +25,7 @@ const { testNewAdSet } = require('./tests/testNewAdSet');
     await testLogin(page);
     // await testNewCampaign(page);
     // await testUploadImage(page);
-    await testNewAdSet(page);
+    await testNewAdSet(page, browser);
   } catch (err) {
     console.error('-----');
     console.error(err);

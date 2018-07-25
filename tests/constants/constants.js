@@ -15,10 +15,10 @@ const globalSelectors = {
     FREQUENCYCAP_PERIOD_WEEK_SELECTOR : 'ct-form-group:nth-child(7) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > dsp-frequency-spend > div > div.lt-f-row.lt-f-col-center > div:nth-child(4) > ct-select > div > div.au-target.tagger-editable-block > div.tagger-options.fxVr > div.tagger-options-list.options-container.au-target > div:nth-child(3)',
     CAMPAIGNNAME_INPUT_SELECTOR : 'ct-form-group:nth-child(4) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > div > input',
     DAILYSPEND_INPUT_SELECTOR : '#input',
-    NEWCAMPAIGN_BUTTON_SELECTOR : 'body > div.lt-f-col.main-app-wrapper.au-target > div > div.ct-toolbar > div > div:nth-child(2) > a > span',
+    NEWCAMPAIGN_BUTTON_SELECTOR : 'body > div.lt-f-col.main-app-wrapper.au-target > div > div.ct-toolbar > div > div:nth-child(2) > a:nth-child(2)',
     NOTDISABLED_SELECTOR : 'div.au-target.fieldset:not(.disabled)',
     NOTDISABLED_SELECTOR_2 : 'body > div.lt-f-col.main-app-wrapper.au-target > div > ct-form > form > div:not(.disabled)',
-    NEXTSTEP_BUTTON_SELECTOR : 'ct-form-footer > div > div:nth-child(2) > div.lt-f-3.lt-f-self-end.lt-f-col > div > div > a.btn.btn-primary.au-target',
+    NEXTSTEP_BUTTON_SELECTOR : 'body > div.lt-f-col.main-app-wrapper.au-target > div > ct-form > form > div > ct-form-footer > div > div:nth-child(2) > div.lt-f-3.lt-f-self-end.lt-f-col > div > div > a.btn.btn-primary.au-target',
     BACKSTEP_BUTTON_SELECTOR : 'ct-form-footer > div > div:nth-child(2) > div.lt-f-3.lt-f-self-end.lt-f-col > div > div > a.btn.btn-secondary.m-r-sm.au-target',
     REMOVECAMPAIGN_BUTTON_SELECTOR : 'ct-form-footer > div > div:nth-child(2) > div.lt-f-1.lt-f-self-start.p-t-s.m-l-sm > ct-button-confirm > div > button',
     REMOVECONFIRM_BUTTON_SELECTOR : '#modal-container > pr-dialog > div > div > div > pr-dialog-footer > div > button.btn.btn-primary.au-target',
@@ -28,7 +28,7 @@ const globalSelectors = {
     NEW_FLIGHT_BUTTON_SELECTOR : 'ct-form > form > div > div > dsp-budget-flights > div > div:nth-child(1) > button > span',
     ADVERTISER_SELECTOR : 'ct-form-group:nth-child(3) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > ct-row > ct-col > fieldset > ct-select > div > div.fxFit.fxHr.tagger-non-editable-block.au-target',
     ADVERTISER_NAME_SELECTOR : 'ct-form-group:nth-child(3) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > ct-row > ct-col > fieldset > ct-select > div > div.au-target.tagger-editable-block > div.tagger-options.fxVr > div.tagger-options-list.options-container.au-target > div:nth-child(4)',
-    
+
     //константы стратегий:
     CAMPAIGN_4STEP_ADSET_SELECTOR : 'ct-form-steps > ul > li:nth-child(4) > a',
     CAMPAIGN_4STEP_NEW_ADSET_BUTTON_SELECTOR : `ct-form > form > div > div > div.ct-toolbar > div:nth-child(1) > div:nth-child(1) > a > span`,

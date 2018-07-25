@@ -49,10 +49,28 @@ async function getFromInsideInput(page, selector) {
   return await page.evaluate(el => el.valueAsNumber, await page.$(selector));
 }
 
+async function hardClick(page, selector) {
+  return await page.evaluate(el => {
+    console.log('hardClick', el);
+    el.click();
+  }, await page.$(selector));
+}
+
+async function waitForOpenNewPage(browser) {
+  return new Promise((x) => browser.once('targetcreated', async (target) => {
+    const newPage = await target.page();
+    const newPagePromise = new Promise(() => newPage.once('domcontentloaded', () => x(newPage)));
+    const isPageLoaded = await newPage.evaluate(() => document.readyState);
+    return isPageLoaded.match('complete|interactive') ? x(newPage) : newPagePromise;
+}));
+}
+
 module.exports = {
     getInnerHtmlText,
     waitForResponseOk,
     waitForCheckBoxStatus,
     getFromInside,
-    getFromInsideInput
+    getFromInsideInput,
+    hardClick,
+    waitForOpenNewPage,
 };

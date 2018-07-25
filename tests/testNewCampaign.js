@@ -3,18 +3,15 @@ const { waitForResponseOk, waitForCheckBoxStatus, getFromInside, getFromInsideIn
 const { globalSelectors } = require('./constants/constants');
 
 async function testNewCampaign(page) {
-   
-    
-
     await NewCampaign(page, globalSelectors);
     await CampaignName(page, globalSelectors);
     await CampaignNextBackStep(page, globalSelectors);
-    
+
     await waitForCheckBoxStatus(page, globalSelectors.STATUSRADIOBUTTON_ON_SELECTOR + ' > input', true);
     await waitForCheckBoxStatus(page, globalSelectors.DAILYSPEND_CHECKBOX_SELECTOR, true);
     await waitForCheckBoxStatus(page, globalSelectors.FREQUENCYCAP_CHECKBOX_SELECTOR, true);
     await waitForCheckBoxStatus(page, globalSelectors.BUDGETFLIGHTS_SELECTOR, true);
-  
+
     await RemoveCampaign(page, globalSelectors);
 
     await NewCampaign(page, globalSelectors);
@@ -39,7 +36,7 @@ async function testNewCampaign(page) {
     if (selectedDailySpendValue !== 250) {
       throw new Error('DAILY SPEND MUST BE 250!!!!', selectedDailySpendValue)
     }
-    
+
     await waitForCheckBoxStatus(page, globalSelectors.FREQUENCYCAP_CHECKBOX_SELECTOR, false);
     const selectedFrequencyPacingType = await getFromInside(page, globalSelectors.FREQUENCYCAP_PACINGTYPE_EVEN_SAVED_SELECTOR);
     if (selectedFrequencyPacingType !== 'Even') {
@@ -68,8 +65,7 @@ async function testNewCampaign(page) {
 }
 
 async function CampaignName(page, selectors = {}) {
-  
-
+  await page.waitForSelector(selectors.CAMPAIGNNAME_INPUT_SELECTOR);
   await page.click(selectors.CAMPAIGNNAME_INPUT_SELECTOR);
   await page.keyboard.down('Shift');
   await page.keyboard.press('Home');
@@ -79,7 +75,7 @@ async function CampaignName(page, selectors = {}) {
 }
 
 async function DailySpend(page, selectors = {}) {
-  
+
 
   await page.evaluate(() => {
     document.querySelector('ct-form-group:nth-child(6) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > div > ct-checkbox > label > input').click();
@@ -100,7 +96,7 @@ async function FrequencyCap(page, selectors = {}) {
   await page.evaluate(() => {
     document.querySelector('ct-form-group:nth-child(7) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > dsp-frequency-spend > div > div > label > ct-checkbox > label > input').click();
   }); // использую вместо await page.click(FREQUENCYCAP_CHECKBOX_SELECTOR), т.к. встроенная функция не срабатывает, причина не ясна
-  
+
   await page.evaluate(() => {
     document.querySelector('ct-form-group:nth-child(7) > fieldset > div > div.lt-f-3.lt-f-col.form-group-error > dsp-frequency-spend > div > div.lt-f-row.lt-f-col-center > div:nth-child(1) > ct-select > div > div.fxFit.fxHr.tagger-non-editable-block.au-target').click();
   }); // использую вместо await page.click(FREQUENCYCAP_PACINGTYPE_SELECTOR), т.к. встроенная функция не срабатывает, причина не ясна
@@ -118,14 +114,13 @@ async function FrequencyCap(page, selectors = {}) {
 }
 
 async function NewCampaign(page, selectors = {}) {
-  
   await page.waitForSelector(selectors.NEWCAMPAIGN_BUTTON_SELECTOR);
   await page.click(selectors.NEWCAMPAIGN_BUTTON_SELECTOR);
   return await page.waitForSelector(selectors.NOTDISABLED_SELECTOR);
 }
 
 async function CampaignNextBackStep(page, selectors = {}) {
-  
+
   await page.click(selectors.NEXTSTEP_BUTTON_SELECTOR);
   // await page.waitFor(8000);
   await page.waitForSelector(selectors.NOTDISABLED_SELECTOR_2);
@@ -136,7 +131,7 @@ async function CampaignNextBackStep(page, selectors = {}) {
 }
 
 async function RemoveCampaign(page, selectors = {}) {
- 
+
   await page.waitFor(3000);
   await page.click(selectors.REMOVECAMPAIGN_BUTTON_SELECTOR);
   await page.waitForSelector(selectors.REMOVECONFIRM_BUTTON_SELECTOR);
