@@ -44,9 +44,15 @@ async function getFromInside(page, selector) {
   return await page.evaluate(el => el.innerHTML.replace('<!--anchor-->', ''), await page.$(selector));
 }
 
+async function getFromInsideInput(page, selector) {
+  await page.waitForSelector(selector);
+  return await page.evaluate(el => el.valueAsNumber, await page.$(selector));
+}
+
 module.exports = {
     getInnerHtmlText,
     waitForResponseOk,
     waitForCheckBoxStatus,
-    getFromInside
+    getFromInside,
+    getFromInsideInput
 };

@@ -5,7 +5,8 @@ const { url } = require('./creds');
 // Import tests
 const { testLogin } = require('./tests/testLogin');
 // const { testUploadImage } = require('./tests/testUploadImage');
-const { testNewCampaign } = require('./tests/testNewCampaign');
+// const { testNewCampaign } = require('./tests/testNewCampaign');
+const { testNewAdSet } = require('./tests/testNewAdSet');
 
 
 (async () => {
@@ -22,8 +23,9 @@ const { testNewCampaign } = require('./tests/testNewCampaign');
     // Paste test here
     page.on('error', (errorMessage) => { throw Error(errorMessage) });
     await testLogin(page);
-    await testNewCampaign(page);
+    // await testNewCampaign(page);
     // await testUploadImage(page);
+    await testNewAdSet(page);
   } catch (err) {
     console.error('-----');
     console.error(err);
